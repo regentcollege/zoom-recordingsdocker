@@ -25,7 +25,7 @@ RUN docker-php-ext-install -j$(nproc) mysqli pdo pdo_mysql \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN mkdir /var/www/retreat && chown www-data: /var/www/retreat -R && \
-    chmod 0755 /var/www/parking -R
+    chmod 0755 /var/www/retreat -R
 	
 COPY ./config/retreat.conf /etc/apache2/sites-available/retreat.conf
 RUN mkdir -p /var/www/retreat/current
