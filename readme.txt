@@ -2,8 +2,8 @@ Here is a docker-compose.yml example:
 
 services:
   parking:
-    image: regentcollege/retreat
+    image: ghcr.io/regentcollege/retreatdocker
     ports: 
        - '80:80'
     volumes:
-      - /var/www/parking:/var/www/retreat
+      - /var/www/retreat:/var/www/retreat
