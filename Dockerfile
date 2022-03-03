@@ -37,3 +37,7 @@ WORKDIR /var/www/retreat
 EXPOSE 80
 
 CMD ["apache2-foreground"]
+
+RUN usermod -u 1000 www-data
+RUN usermod -G staff www-data
+
