@@ -1,5 +1,5 @@
-FROM php:7-apache
-MAINTAINER codyrigg
+FROM php:8-apache
+MAINTAINER ctucker
 
 RUN apt-get update && \
     apt-get install -y vim \
@@ -24,15 +24,15 @@ RUN docker-php-ext-install -j$(nproc) mysqli pdo pdo_mysql \
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN mkdir /var/www/retreat && chown www-data: /var/www/retreat -R && \
-    chmod 0755 /var/www/retreat -R
+RUN mkdir /var/www/courseval && chown www-data: /var/www/courseval -R && \
+    chmod 0755 /var/www/courseval -R
 	
-COPY ./config/retreat.conf /etc/apache2/sites-available/retreat.conf
-RUN mkdir -p /var/www/retreat/current
+COPY ./config/courseval.conf /etc/apache2/sites-available/courseval.conf
+RUN mkdir -p /var/www/courseval/current
 
-RUN a2ensite retreat.conf && a2dissite 000-default.conf && a2enmod rewrite
+RUN a2ensite courseval.conf && a2dissite 000-default.conf && a2enmod rewrite
 
-WORKDIR /var/www/retreat
+WORKDIR /var/www/courseval
 
 EXPOSE 80
 
