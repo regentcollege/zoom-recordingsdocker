@@ -39,13 +39,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY ./config/courseval.conf /etc/apache2/sites-available/laravel.conf
 COPY ./config/courseval.php.ini /usr/local/etc/php/conf.d/laravel.php.ini
 COPY ./config/courseval_supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY courseval_start.sh /usr/local/bin/start
+COPY give_start.sh /usr/local/bin/start
 
-RUN mkdir -p /var/www/courseval/current/public
+RUN mkdir -p /var/www/give/current/public
 
 RUN a2ensite laravel.conf && a2dissite 000-default.conf && chmod u+x /usr/local/bin/start && a2enmod rewrite
 	
 # Setup working directory
-WORKDIR /var/www/courseval
+WORKDIR /var/www/give
 
 CMD ["/usr/local/bin/start"]
