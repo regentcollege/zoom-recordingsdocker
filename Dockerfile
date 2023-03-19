@@ -36,9 +36,9 @@ RUN docker-php-ext-install intl
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY ./config/courseval.conf /etc/apache2/sites-available/laravel.conf
-COPY ./config/courseval.php.ini /usr/local/etc/php/conf.d/laravel.php.ini
-COPY ./config/courseval_supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./config/give.conf /etc/apache2/sites-available/laravel.conf
+COPY ./config/give.php.ini /usr/local/etc/php/conf.d/laravel.php.ini
+COPY ./config/give_supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY give_start.sh /usr/local/bin/start
 
 RUN mkdir -p /var/www/give/current/public
