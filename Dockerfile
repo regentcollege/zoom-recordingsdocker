@@ -1,5 +1,5 @@
 # Set the base image for subsequent instructions
-FROM php:8.2-apache
+FROM php:8.0-apache
 
 # Install dependencies
 RUN apt-get update && pecl install redis && apt-get install -y \
@@ -36,16 +36,16 @@ RUN docker-php-ext-install intl
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY ./config/give.conf /etc/apache2/sites-available/laravel.conf
-COPY ./config/give.php.ini /usr/local/etc/php/conf.d/laravel.php.ini
-COPY ./config/give_supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY give_start.sh /usr/local/bin/start
+COPY ./config/laravel.conf /etc/apache2/sites-available/laravel.conf
+COPY ./config/laravel.php.ini /usr/local/etc/php/conf.d/laravel.php.ini
+COPY ./config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY start.sh /usr/local/bin/start
 
-RUN mkdir -p /var/www/give/current/public
+RUN mkdir -p /var/www/zoom-recordings/current/public
 
 RUN a2ensite laravel.conf && a2dissite 000-default.conf && chmod u+x /usr/local/bin/start && a2enmod rewrite
 	
 # Setup working directory
-WORKDIR /var/www/give
+WORKDIR /var/www/zoom-recordings
 
 CMD ["/usr/local/bin/start"]
