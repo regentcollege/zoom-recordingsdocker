@@ -33,10 +33,8 @@ RUN docker-php-ext-install gd && docker-php-ext-enable opcache redis
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 
-RUN apk add --no-cache --virtual .tz-build-deps $PHPIZE_DEPS \
-      && pecl install timezonedb-2026.4 \
-      && docker-php-ext-enable timezonedb \
-      && apk del .tz-build-deps
+RUN pecl install timezonedb-2026.4 \
+      && docker-php-ext-enable timezonedb
 	  
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
